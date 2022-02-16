@@ -1,0 +1,172 @@
+<div>
+
+  <main class="main" id="top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+      <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/template/assets/img/logo-smart-voyageur-avion.jpg" height="70" width="100" alt="logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+        <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
+            <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline order-1 order-lg-0 fw-medium text-danger" href="http://localhost:4200/">Déconnexion</a></li>
+           </ul>
+        </div>
+      </div>
+    </nav>
+    <section style="padding-top: 7rem;">
+      <div class="bg-holder" style="background-image:url(assets/template/assets/img/hero/hero-bg.svg);">
+      </div>
+      
+      
+        <div class="container-fluid p-5">
+          
+            <div class="col-md-6">
+              <mat-form-field appearance="standard">
+                <mat-label>Recherche par mots-clés</mat-label>
+                <input class="icon-search icon-2x" matInput (keyup)="applyFilter($event)" placeholder="" #input>
+              </mat-form-field>
+            </div>
+          
+          
+          <form [formGroup]="searchForm" (submit)="search()">
+            <div class="row p-5">
+      
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Ville de départ" formControlName="villeDepart" />
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Ville d'arrivée" formControlName="villeArrive" />
+              </div>
+              <div class="col-md-3">
+                <input type="date" class="form-control" placeholder="Date" formControlName="date">
+              </div>
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-recherche ">Rechercher</button>
+              </div>
+            </div>
+          </form>
+
+          
+
+          <div class="table-responsive">
+          <table mat-table [dataSource]="dataSource" class="table caption-top">
+            <caption>Liste des vols</caption>
+
+            <!--<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 p-5"></table>-->
+            <!-- weekday -->
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef><b>Date Vol</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+      
+            <!-- villeDepart -->
+            <ng-container matColumnDef="villeDepart">
+              <th mat-header-cell *matHeaderCellDef><b>Ville Départ</b></th>
+               <td mat-cell *matCellDef="let element"> {{element.villeDepart}} </td>
+            </ng-container>
+      
+             <!-- villeArrive -->
+            <ng-container matColumnDef="villeArrive">
+              <th mat-header-cell *matHeaderCellDef><b>Ville Arrivée</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.villeArrive}} </td>
+            </ng-container>
+      
+            <!-- departure_icaoCode -->
+            <ng-container matColumnDef="departure_icaoCode">
+              <th mat-header-cell *matHeaderCellDef><b>Départ IcaoCode</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.departure_icaoCode}} </td>
+            </ng-container>
+      
+            <!-- departure_terminal -->
+            <ng-container matColumnDef="departure_terminal">
+              <th mat-header-cell *matHeaderCellDef><b>Départ Heure Prévue</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.departure_scheduledTime}} </td>
+            </ng-container>
+      
+            <!-- departure_gate -->
+            <ng-container matColumnDef="departure_gate">
+              <th mat-header-cell *matHeaderCellDef><b>Départ Porte</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.departure_gate}} </td>
+            </ng-container>
+      
+            <!-- departure_scheduledTime -->
+            <ng-container matColumnDef="departure_scheduledTime">
+              <th mat-header-cell *matHeaderCellDef><b>Départ Terminal</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.departure_terminal}} </td>
+            </ng-container>
+      
+            <!-- arrival_iataCode -->
+            <ng-container matColumnDef="arrival_iataCode">
+              <th mat-header-cell *matHeaderCellDef><b>Arrivée IataCode</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.arrival_iataCode}} </td>
+            </ng-container>
+            <!-- arrival_icaoCode -->
+            <ng-container matColumnDef="arrival_icaoCode">
+              <th mat-header-cell *matHeaderCellDef><b>Arrivée IcaoCode</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.arrival_icaoCode}} </td>
+            </ng-container>
+      
+            <!-- arrival_terminal -->
+            <ng-container matColumnDef="arrival_terminal">
+              <th mat-header-cell *matHeaderCellDef><b>Arrivée Terminal</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.arrival_terminal}} </td>
+            </ng-container>
+      
+            <!-- arrival_gate -->
+            <ng-container matColumnDef="arrival_gate">
+              <th mat-header-cell *matHeaderCellDef><b>Arrivée Porte </b></th>
+              <td mat-cell *matCellDef="let element"> {{element.arrival_gate}} </td>
+            </ng-container>
+      
+            <!-- arrival_scheduledTime -->
+            <ng-container matColumnDef="arrival_scheduledTime">
+              <th mat-header-cell *matHeaderCellDef><b>Arrivée Heure Prévue</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.arrival_scheduledTime}} </td>
+            </ng-container>
+      
+            <!-- aircraft_modelText -->
+            <ng-container matColumnDef="aircraft_modelText">
+              <th mat-header-cell *matHeaderCellDef><b>Avion Modèle</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.aircraft_modelText}} </td>
+            </ng-container>
+      
+            <!-- airline_name -->
+            <ng-container matColumnDef="airline_name">
+              <th mat-header-cell *matHeaderCellDef><b>Nom Compagnie</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.airline_name}} </td>
+            </ng-container>
+      
+            <!-- flight_number -->
+            <ng-container matColumnDef="flight_number">
+              <th mat-header-cell *matHeaderCellDef><b>Numéro Vol</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.flight_number}} </td>
+            </ng-container>
+      
+            <!-- flight_iataNumber -->
+            <ng-container matColumnDef="flight_iataNumber">
+              <th mat-header-cell *matHeaderCellDef><b>Numéro Iata</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.flight_iataNumber}} </td>
+            </ng-container>
+      
+            <!-- flight_icaoNumber -->
+            <ng-container matColumnDef="flight_icaoNumber">
+              <th mat-header-cell *matHeaderCellDef><b>Numéro Icao</b></th>
+              <td mat-cell *matCellDef="let element"> {{element.flight_icaoNumber}} </td>
+            </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">Aucune donnée correspondant à votre recherche "{{input.value}}"</td>
+            </tr>
+          </table>
+        </div>
+        
+          </div> 
+
+          
+  
+</section>
+ 
+
+

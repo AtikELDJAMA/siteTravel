@@ -1,0 +1,24 @@
+.wrapper {
+  background: url("../../assets/img/hero-img.png") no-repeat fixed;
+  /* margin-top: 10px; */
+  min-height: 100vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* Structure */
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.btn-recherche {
+  color: #fff;
+  background-color: #7465d2;
+  border-color: #7465d2;
+}

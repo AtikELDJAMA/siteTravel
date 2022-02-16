@@ -1,0 +1,43 @@
+.wrapper {
+  background: url("../../assets/img/hero-img.png") no-repeat fixed;
+  /* margin-top: 10px; */
+  min-height: 100vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.btn-color {
+  background-color: #2b4a85;
+  color: #fff;
+}
+
+.profile-image-pic {
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+}
+
+.cardbody-color {
+  background-color: #ffff;
+  border-radius: 15%;
+}
+
+.title {
+  color: #fff !important;
+  font-size: 50px;
+}
+
+.sub-title {
+  color: bisque !important;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-err{
+  color: red;
+  font-family: 'helvetica' !important;
+}
